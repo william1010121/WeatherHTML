@@ -7,7 +7,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Foundation' (2a9f87e)
 
 ## Phase 2: BackEnd Module & Swagger Parsing
-- [ ] Task: Create `BackEnd-Operations.md` by parsing `swagger.json` to list all operations
+- [x] Task: Create `BackEnd-Operations.md` by parsing `swagger.json` to list all operations (cee12a4)
 - [ ] Task: Implement `swagger-parser.js` to dynamically build the BackEnd sidebar
 - [ ] Task: Create a template for `BackEnd-[Operation].html` with Auth headers and parameter inputs
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: BackEnd Module' (Protocol in workflow.md)
