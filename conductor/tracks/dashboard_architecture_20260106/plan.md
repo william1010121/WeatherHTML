@@ -15,7 +15,7 @@
 ## Phase 3: DataJson Module
 - [x] Task: Create `DataJson-Explorer.html` with Year/Month inputs (5d85713)
 - [x] Task: Implement fetching logic from the ngrok API and rendering collapsible list (d4830ad)
-- [ ] Task: Implement JSON download functionality
+- [x] Task: Implement JSON download functionality (841d8ea)
 - [ ] Task: Conductor - User Manual Verification 'Phase 3: DataJson Module' (Protocol in workflow.md)
 
 ## Phase 4: Shared Auth & Integration
