@@ -59,6 +59,15 @@ function renderSidebar(tags) {
   const sidebarContent = document.getElementById('sidebar-content');
   let html = '<h2 class="text-lg font-bold mb-4">BackEnd Operations</h2>';
 
+  // Define unified resource pages
+  const unifiedPages = {
+    'User': 'BackEnd-User.html',
+    'Weather_Auto': 'BackEnd-Weather_Auto.html',
+    'Weather_Manual': 'BackEnd-Weather_Manual.html',
+    'Weather_CWA': 'BackEnd-Weather_CWA.html',
+    'AirQuality': 'BackEnd-AirQuality.html'
+  };
+
   Object.keys(tags).sort().forEach(tag => {
     html += `
       <div class="mb-4">
@@ -66,21 +75,35 @@ function renderSidebar(tags) {
         <ul class="space-y-1">
     `;
 
-    tags[tag].forEach(op => {
-      // Create a URL-friendly name for the operation file
-      const safeName = op.name.replace(/[^a-z0-9]/gi, '-');
-      const href = `BackEnd-${safeName}.html`;
-
+    if (unifiedPages[tag]) {
+      // Render a single management link for unified resources
       html += `
         <li>
-          <a href="${href}" target="content-frame" title="${op.summary}"
-             class="block p-2 text-sm hover:bg-blue-50 rounded text-gray-700 hover:text-blue-600 transition truncate">
-            <span class="font-mono text-xs font-bold mr-1 ${getMethodColor(op.method)}">${op.method}</span>
-            ${op.name}
+          <a href="${unifiedPages[tag]}" target="content-frame"
+             class="block p-2 text-sm bg-blue-50 text-blue-700 hover:bg-blue-100 rounded font-medium transition">
+            <span class="inline-block w-2 h-2 rounded-full bg-blue-600 mr-2"></span>
+            Manage ${tag}
           </a>
         </li>
       `;
-    });
+    } else {
+      // Render individual operations for other resources
+      tags[tag].forEach(op => {
+        // Create a URL-friendly name for the operation file
+        const safeName = op.name.replace(/[^a-z0-9]/gi, '-');
+        const href = `BackEnd-Generic.html?method=${op.method}&path=${encodeURIComponent(op.path)}&name=${encodeURIComponent(op.name)}`;
+
+        html += `
+          <li>
+            <a href="${href}" target="content-frame" title="${op.summary}"
+               class="block p-2 text-sm hover:bg-gray-100 rounded text-gray-700 hover:text-blue-600 transition truncate">
+              <span class="font-mono text-xs font-bold mr-1 ${getMethodColor(op.method)}">${op.method}</span>
+              ${op.name}
+            </a>
+          </li>
+        `;
+      });
+    }
 
     html += '</ul></div>';
   });
