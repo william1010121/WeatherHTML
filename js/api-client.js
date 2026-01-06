@@ -13,6 +13,38 @@ const STORAGE_KEYS = {
 function initApiClient() {
   loadAuthFromStorage();
   setupAuthListeners();
+  
+  // Initial check and set interval for status
+  checkAuthStatus();
+  setInterval(checkAuthStatus, 10000);
+}
+
+/**
+ * Checks the current authentication status by calling /api/Account/info.
+ */
+async function checkAuthStatus() {
+  const statusEl = document.getElementById('auth-status');
+  if (!statusEl) return;
+
+  const account = localStorage.getItem(STORAGE_KEYS.ACCOUNT);
+  const password = localStorage.getItem(STORAGE_KEYS.PASSWORD);
+
+  if (!account || !password) {
+    statusEl.textContent = 'Status: Missing Credentials';
+    statusEl.className = 'text-xs font-bold text-yellow-600';
+    return;
+  }
+
+  try {
+    const response = await apiRequest('GET', '/api/Account/info');
+    if (response.status === 200) {
+      statusEl.textContent = `Status: Logged in as ${response.data.nickname || response.data.account}`;
+      statusEl.className = 'text-xs font-bold text-green-600';
+    }
+  } catch (error) {
+    statusEl.textContent = 'Status: Unauthorized / Error';
+    statusEl.className = 'text-xs font-bold text-red-600';
+  }
 }
 
 /**

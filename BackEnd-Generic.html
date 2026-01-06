@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generic Operation - BackEnd</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-50 p-6">
+
+  <!-- Shared Auth Header -->
+  <div class="bg-white border rounded-lg p-4 mb-6 shadow-sm">
+    <h2 class="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">Authentication <span id="auth-status" class="text-xs font-bold text-gray-400 ml-2">Checking...</span></h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="auth-account" class="block text-xs font-medium text-gray-500 mb-1">Account</label>
+        <input type="text" id="auth-account" class="w-full border rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter account">
+      </div>
+      <div>
+        <label for="auth-password" class="block text-xs font-medium text-gray-500 mb-1">Password</label>
+        <input type="password" id="auth-password" class="w-full border rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter password">
+      </div>
+    </div>
+  </div>
+
+  <!-- Operation Header -->
+  <div class="mb-6">
+    <div class="flex items-center space-x-2 mb-2">
+      <span id="op-method" class="px-2 py-1 rounded text-xs font-bold bg-blue-600 text-white uppercase">METHOD</span>
+      <h1 id="op-title" class="text-2xl font-bold text-gray-800">Operation Name</h1>
+    </div>
+    <p id="op-path" class="text-sm font-mono text-gray-500">/api/path/here</p>
+  </div>
+
+  <!-- Dynamic Parameters Form -->
+  <form id="op-form" class="bg-white border rounded-lg p-6 shadow-sm space-y-6">
+    <div id="parameters-container" class="space-y-4">
+      <h2 class="text-lg font-semibold border-b pb-2">Parameters & Body</h2>
+      <div id="dynamic-fields" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <!-- Fields will be injected here -->
+      </div>
+      <div id="json-body-container" class="hidden">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Request Body (JSON)</label>
+        <textarea id="field-json-body" rows="8" class="w-full border rounded-lg px-3 py-2 font-mono text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder='{ "key": "value" }'></textarea>
+      </div>
+    </div>
+
+    <div class="pt-4">
+      <button type="submit" class="bg-blue-600 text-white px-8 py-3 rounded-lg font-bold hover:bg-blue-700 transition shadow-md">
+        Execute Operation
+      </button>
+    </div>
+  </form>
+
+  <!-- Response Section -->
+  <div class="mt-10">
+    <h2 class="text-lg font-semibold border-b pb-2 mb-4">Response</h2>
+    <div id="response-status" class="hidden mb-2 p-2 rounded text-sm font-bold"></div>
+    <pre id="response-body" class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm font-mono min-h-[150px]">Waiting for execution...</pre>
+  </div>
+
+  <script src="js/api-client.js" type="module"></script>
+  <script type="module">
+    import { apiRequest } from './js/api-client.js';
+
+    const params = new URLSearchParams(window.location.search);
+    const method = params.get('method');
+    const path = params.get('path');
+    const name = params.get('name');
+
+    document.getElementById('op-method').textContent = method;
+    document.getElementById('op-method').className = `px-2 py-1 rounded text-xs font-bold uppercase text-white ${getMethodBg(method)}`;
+    document.getElementById('op-path').textContent = path;
+    document.getElementById('op-title').textContent = name;
+
+    function getMethodBg(m) {
+      switch (m?.toUpperCase()) {
+        case 'GET': return 'bg-green-600';
+        case 'POST': return 'bg-blue-600';
+        case 'PUT': return 'bg-yellow-600';
+        case 'DELETE': return 'bg-red-600';
+        default: return 'bg-gray-600';
+      }
+    }
+
+    // Try to discover parameters from swagger.json
+    async function discoverParameters() {
+      try {
+        const response = await fetch('./swagger.json');
+        const spec = await response.json();
+        const opSpec = spec.paths[path]?.[method.toLowerCase()];
+        
+        if (!opSpec) return;
+
+        const fieldsContainer = document.getElementById('dynamic-fields');
+        
+        // Handle Query/Path Parameters
+        if (opSpec.parameters) {
+          opSpec.parameters.forEach(p => {
+            const field = createField(p.name, p.schema?.type || 'string', p.required);
+            fieldsContainer.appendChild(field);
+          });
+        }
+
+        // Handle Request Body
+        if (opSpec.requestBody) {
+          document.getElementById('json-body-container').classList.remove('hidden');
+          // Pre-fill with schema if possible
+          const content = opSpec.requestBody.content?.['application/json'] || opSpec.requestBody.content?.['text/json'];
+          if (content?.schema) {
+            // In a more advanced version, we'd resolve $ref and generate a template JSON
+            document.getElementById('field-json-body').placeholder = 'See schema for ' + (content.schema.$ref || 'object');
+          }
+        }
+      } catch (e) {
+        console.warn('Could not load swagger for auto-fields:', e);
+      }
+    }
+
+    function createField(name, type, required) {
+      const div = document.createElement('div');
+      div.innerHTML = `
+        <label class="block text-sm font-medium text-gray-700 mb-1">${name} ${required ? '*' : ''}</label>
+        <input type="${type === 'integer' ? 'number' : 'text'}" 
+               name="${name}" 
+               data-param-type="query"
+               ${required ? 'required' : ''} 
+               class="w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+      `;
+      return div;
+    }
+
+    document.getElementById('op-form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const statusEl = document.getElementById('response-status');
+      const bodyEl = document.getElementById('response-body');
+      
+      statusEl.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+      statusEl.classList.add('bg-blue-100', 'text-blue-800');
+      statusEl.textContent = 'Executing...';
+
+      try {
+        const queryParams = {};
+        document.querySelectorAll('[data-param-type="query"]').forEach(input => {
+          if (input.value) queryParams[input.name] = input.value;
+        });
+
+        let requestBody = null;
+        if (!document.getElementById('json-body-container').classList.contains('hidden')) {
+          const rawBody = document.getElementById('field-json-body').value;
+          if (rawBody) requestBody = JSON.parse(rawBody);
+        }
+
+        // Handle path parameters replacement
+        let actualPath = path;
+        Object.keys(queryParams).forEach(key => {
+          if (actualPath.includes(`{${key}}`)) {
+            actualPath = actualPath.replace(`{${key}}`, queryParams[key]);
+            delete queryParams[key];
+          }
+        });
+
+        const response = await apiRequest(method, actualPath, requestBody, queryParams);
+        
+        statusEl.classList.replace('bg-blue-100', 'bg-green-100');
+        statusEl.classList.replace('text-blue-800', 'text-green-800');
+        statusEl.textContent = `SUCCESS: ${response.status} ${response.statusText}`;
+        bodyEl.textContent = JSON.stringify(response.data, null, 2);
+      } catch (error) {
+        statusEl.classList.replace('bg-blue-100', 'bg-red-100');
+        statusEl.classList.replace('text-blue-800', 'text-red-800');
+        statusEl.textContent = `ERROR: ${error.response?.status || 'Unknown'} ${error.response?.statusText || error.message}`;
+        bodyEl.textContent = JSON.stringify(error.response?.data || error.message, null, 2);
+      }
+    });
+
+    discoverParameters();
+  </script>
+</body>
+</html>
