@@ -70,13 +70,24 @@ async function handleFetch(event) {
     });
     let data = response.data;
 
-    // Handle string responses that might be JSON
+    // Handle string responses (could be HTML wrapping JSON from ngrok/server)
     if (typeof data === 'string') {
+      // Check if it's wrapped in <pre> tags (common for some debug APIs)
+      if (data.includes('<pre>')) {
+        const match = data.match(/<pre>([\s\S]*?)<\/pre>/i);
+        if (match && match[1]) {
+          // Decode HTML entities (like &#34;) using a temporary element
+          const decoder = document.createElement('textarea');
+          decoder.innerHTML = match[1];
+          data = decoder.value;
+        }
+      }
+
       try {
         data = JSON.parse(data);
       } catch (e) {
-        console.error('Data is a string but not valid JSON:', data);
-        showError('Received non-JSON response from server. It might be an error page.');
+        console.error('Data parsing failed. Raw content:', data);
+        showError('Received non-JSON response from server. It might be an error page or malformed HTML.');
         return;
       }
     }
@@ -116,7 +127,8 @@ function renderDataList(data) {
   const items = Array.isArray(data) ? data : [data];
 
   items.forEach((item, index) => {
-    const time = item.Time || item.detectedAtUtc || `Record ${index + 1}`;
+    // Mapping various possible timestamp fields
+    const time = item.Time || item.detectedAtUtc || item['日期時間'] || `Record ${index + 1}`;
     const itemEl = document.createElement('div');
     itemEl.className = 'border rounded overflow-hidden mb-2';
     
