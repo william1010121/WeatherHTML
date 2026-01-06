@@ -31,8 +31,9 @@
       <p class="text-sm text-gray-500 flex items-center">
         Automated sensor observations.
         <span class="mx-2 text-gray-300">|</span>
-        <button id="btn-toggle-refresh" class="text-xs font-bold px-2 py-1 rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition">
-          Auto-Refresh: ON
+        <button id="btn-refresh" class="text-xs font-bold px-3 py-1 rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition flex items-center">
+          <svg class="w-3 h-3 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path></svg>
+          Refresh
         </button>
       </p>
     </div>
@@ -128,17 +129,15 @@
 
     let dataItems = [];
     let currentDeleteId = null;
-    let isRefreshEnabled = true;
 
     const tableBody = document.getElementById('table-body');
     const modal = document.getElementById('modal');
     const deleteModal = document.getElementById('delete-modal');
     const dataForm = document.getElementById('data-form');
     const modalTitle = document.getElementById('modal-title');
-    const toggleBtn = document.getElementById('btn-toggle-refresh');
+    const refreshBtn = document.getElementById('btn-refresh');
 
     async function loadData() {
-      if (!isRefreshEnabled && dataItems.length > 0) return;
       tableBody.innerHTML = '<tr><td colspan="6" class="px-6 py-10 text-center text-gray-400 italic">Loading data...</td></tr>';
       try {
         const response = await apiRequest('POST', '/api/weather/auto/list', { pageIndex: 1, pageSize: 50 });
@@ -169,11 +168,7 @@
       `).join('');
     }
 
-    toggleBtn.addEventListener('click', () => {
-      isRefreshEnabled = !isRefreshEnabled;
-      toggleBtn.textContent = `Auto-Refresh: ${isRefreshEnabled ? 'ON' : 'OFF'}`;
-      toggleBtn.className = `text-xs font-bold px-2 py-1 rounded transition ${isRefreshEnabled ? 'bg-blue-100 text-blue-700 hover:bg-blue-200' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`;
-    });
+    refreshBtn.addEventListener('click', loadData);
 
     window.openModal = (isEdit = false, item = null) => {
       modalTitle.textContent = isEdit ? 'Edit Observation' : 'Add Observation';
@@ -245,7 +240,7 @@
     document.getElementById('btn-cancel').addEventListener('click', () => modal.classList.add('hidden'));
     document.getElementById('btn-delete-cancel').addEventListener('click', () => deleteModal.classList.add('hidden'));
 
-    loadData(); setInterval(loadData, 5000);
+    loadData();
   </script>
 </body>
 </html>
