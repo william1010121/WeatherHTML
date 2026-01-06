@@ -1,3 +1,5 @@
+import { buildBackendSidebar } from './swagger-parser.js';
+
 /**
  * @fileoverview Main navigation logic for the Weather Dashboard shell.
  */
@@ -55,6 +57,7 @@ function loadBackendSidebar() {
       <li class="p-2 bg-gray-100 rounded animate-pulse h-8"></li>
     </ul>
   `;
+  buildBackendSidebar();
 }
 
 /**
