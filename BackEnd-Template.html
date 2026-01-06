@@ -58,10 +58,36 @@
 
   <script src="js/api-client.js" type="module"></script>
   <script type="module">
-    // Template placeholder logic (will be specific per operation page)
-    document.getElementById('op-form').addEventListener('submit', (e) => {
+    import { apiRequest } from './js/api-client.js';
+
+    // Template execution logic
+    document.getElementById('op-form').addEventListener('submit', async (e) => {
       e.preventDefault();
-      document.getElementById('response-body').textContent = 'Executing... (Integration pending in Phase 4)';
+      
+      const statusEl = document.getElementById('response-status');
+      const bodyEl = document.getElementById('response-body');
+      const method = document.getElementById('op-method').textContent;
+      const path = document.getElementById('op-path').textContent;
+
+      statusEl.classList.remove('hidden', 'bg-green-100', 'text-green-800', 'bg-red-100', 'text-red-800');
+      statusEl.classList.add('bg-blue-100', 'text-blue-800');
+      statusEl.textContent = 'Executing...';
+      bodyEl.textContent = 'Request sent...';
+
+      try {
+        // In a real generated page, we would gather data from parameters-container
+        const response = await apiRequest(method, path);
+        
+        statusEl.classList.replace('bg-blue-100', 'bg-green-100');
+        statusEl.classList.replace('text-blue-800', 'text-green-800');
+        statusEl.textContent = `SUCCESS: ${response.status} ${response.statusText}`;
+        bodyEl.textContent = JSON.stringify(response.data, null, 2);
+      } catch (error) {
+        statusEl.classList.replace('bg-blue-100', 'bg-red-100');
+        statusEl.classList.replace('text-blue-800', 'text-red-800');
+        statusEl.textContent = `ERROR: ${error.response?.status || 'Unknown'} ${error.response?.statusText || error.message}`;
+        bodyEl.textContent = JSON.stringify(error.response?.data || error.message, null, 2);
+      }
     });
   </script>
 </body>
