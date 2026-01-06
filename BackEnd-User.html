@@ -28,7 +28,13 @@
   <div class="flex flex-col md:flex-row md:items-center justify-between mb-6 gap-4">
     <div>
       <h1 class="text-2xl font-bold text-gray-800">User Management</h1>
-      <p class="text-sm text-gray-500">Manage system users, roles, and access.</p>
+      <p class="text-sm text-gray-500 flex items-center">
+        Manage system users, roles, and access.
+        <span class="mx-2 text-gray-300">|</span>
+        <button id="btn-toggle-refresh" class="text-xs font-bold px-2 py-1 rounded bg-blue-100 text-blue-700 hover:bg-blue-200 transition">
+          Auto-Refresh: ON
+        </button>
+      </p>
     </div>
     <button id="btn-add-user" class="bg-blue-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition shadow-md flex items-center justify-center">
       <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="12 4v16m8-8H4"></path></svg>
@@ -42,6 +48,7 @@
       <table class="w-full text-left text-sm">
         <thead class="bg-gray-50 border-b text-gray-700 font-bold uppercase tracking-wider">
           <tr>
+            <th class="px-6 py-3">ID</th>
             <th class="px-6 py-3">Account</th>
             <th class="px-6 py-3">Nickname</th>
             <th class="px-6 py-3">Role</th>
@@ -51,7 +58,7 @@
         <tbody id="user-table-body" class="divide-y text-gray-600">
           <!-- Data rows will be injected here -->
           <tr>
-            <td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">Loading users...</td>
+            <td colspan="5" class="px-6 py-10 text-center text-gray-400 italic">Loading users...</td>
           </tr>
         </tbody>
       </table>
@@ -120,6 +127,8 @@
 
     let users = [];
     let currentDeleteId = null;
+    let refreshInterval = null;
+    let isRefreshEnabled = true;
 
     // UI Elements
     const tableBody = document.getElementById('user-table-body');
@@ -127,27 +136,30 @@
     const deleteModal = document.getElementById('delete-modal');
     const userForm = document.getElementById('user-form');
     const modalTitle = document.getElementById('modal-title');
+    const toggleBtn = document.getElementById('btn-toggle-refresh');
     
     // Fetch and render users
     async function loadUsers() {
-      tableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">Loading users...</td></tr>';
+      if (!isRefreshEnabled && users.length > 0) return;
+      tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-10 text-center text-gray-400 italic">Loading users...</td></tr>';
       try {
         const response = await apiRequest('POST', '/api/User/list', { pageIndex: 1, pageSize: 100 });
         users = response.data.rows || [];
         renderUsers();
       } catch (error) {
-        tableBody.innerHTML = `<tr><td colspan="4" class="px-6 py-10 text-center text-red-500 font-bold">Error loading users: ${error.message}</td></tr>`;
+        tableBody.innerHTML = `<tr><td colspan="5" class="px-6 py-10 text-center text-red-500 font-bold">Error loading users: ${error.message}</td></tr>`;
       }
     }
 
     function renderUsers() {
       if (users.length === 0) {
-        tableBody.innerHTML = '<tr><td colspan="4" class="px-6 py-10 text-center text-gray-400 italic">No users found.</td></tr>';
+        tableBody.innerHTML = '<tr><td colspan="5" class="px-6 py-10 text-center text-gray-400 italic">No users found.</td></tr>';
         return;
       }
 
       tableBody.innerHTML = users.map(user => `
         <tr class="hover:bg-gray-50 transition">
+          <td class="px-6 py-4 font-mono text-xs text-gray-400">${user.userId}</td>
           <td class="px-6 py-4 font-medium text-gray-900">${user.account}</td>
           <td class="px-6 py-4">${user.nickname}</td>
           <td class="px-6 py-4">
@@ -156,25 +168,44 @@
             </span>
           </td>
           <td class="px-6 py-4 space-x-2">
-            <button onclick="window.editUser('${user.id}')" class="text-blue-600 hover:text-blue-800 font-bold">Edit</button>
-            <button onclick="window.confirmDelete('${user.id}', '${user.account}')" class="text-red-600 hover:text-red-800 font-bold">Delete</button>
+            <button onclick="window.editUser('${user.userId}')" class="text-blue-600 hover:text-blue-800 font-bold">Edit</button>
+            <button onclick="window.confirmDelete('${user.userId}', '${user.account}')" class="text-red-600 hover:text-red-800 font-bold">Delete</button>
           </td>
         </tr>
       `).join('');
     }
 
+    // Toggle logic
+    toggleBtn.addEventListener('click', () => {
+      isRefreshEnabled = !isRefreshEnabled;
+      toggleBtn.textContent = `Auto-Refresh: ${isRefreshEnabled ? 'ON' : 'OFF'}`;
+      toggleBtn.className = `text-xs font-bold px-2 py-1 rounded transition ${isRefreshEnabled ? 'bg-blue-100 text-blue-700 hover:bg-blue-200' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}`;
+    });
+
     // Modal logic
     window.openModal = (isEdit = false, user = null) => {
       modalTitle.textContent = isEdit ? 'Edit User' : 'Add New User';
-      document.getElementById('field-id').value = isEdit ? user.id : '';
+      document.getElementById('field-id').value = isEdit ? user.userId : '';
       document.getElementById('field-account').value = isEdit ? user.account : '';
       document.getElementById('field-nickname').value = isEdit ? user.nickname : '';
       document.getElementById('field-password').value = '';
       document.getElementById('field-role').value = isEdit ? user.role : 'User';
       
-      const pwdLabel = document.querySelector('#password-group label');
-      pwdLabel.textContent = isEdit ? 'Password (Optional)' : 'Password *';
-      document.getElementById('field-password').required = !isEdit;
+      // Disable Account field in edit mode (as it's not in EditUserModel)
+      document.getElementById('field-account').disabled = isEdit;
+      document.getElementById('field-account').className = isEdit 
+        ? "w-full border rounded-lg px-3 py-2 bg-gray-100 text-gray-500 cursor-not-allowed outline-none"
+        : "w-full border rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none";
+
+      const pwdGroup = document.getElementById('password-group');
+      if (isEdit) {
+        pwdGroup.classList.add('hidden'); // Hide password in edit mode
+        document.getElementById('field-password').required = false;
+      } else {
+        pwdGroup.classList.remove('hidden');
+        document.querySelector('#password-group label').textContent = 'Password *';
+        document.getElementById('field-password').required = true;
+      }
 
       userModal.classList.remove('hidden');
     };
@@ -188,22 +219,24 @@
     userForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const id = document.getElementById('field-id').value;
-      const data = {
-        account: document.getElementById('field-account').value,
-        nickname: document.getElementById('field-nickname').value,
-        role: document.getElementById('field-role').value,
-      };
       
-      const password = document.getElementById('field-password').value;
-      if (password) data.password = password;
-
       try {
         if (id) {
-          // Edit (Patch)
-          data.id = id;
+          // Edit (Patch) - Only send allowed fields
+          const data = {
+            userId: id,
+            nickname: document.getElementById('field-nickname').value,
+            role: document.getElementById('field-role').value,
+          };
           await apiRequest('PATCH', '/api/User', data);
         } else {
           // Add (Post)
+          const data = {
+            account: document.getElementById('field-account').value,
+            nickname: document.getElementById('field-nickname').value,
+            role: document.getElementById('field-role').value,
+            password: document.getElementById('field-password').value
+          };
           await apiRequest('POST', '/api/User', data);
         }
         closeModal();
@@ -237,12 +270,12 @@
     document.getElementById('btn-delete-cancel').addEventListener('click', () => deleteModal.classList.add('hidden'));
 
     window.editUser = (id) => {
-      const user = users.find(u => u.id === id);
+      const user = users.find(u => u.userId === id);
       if (user) window.openModal(true, user);
     };
 
     // Initial load
-    loadUsers();
+    loadUsers(); setInterval(loadUsers, 5000);
   </script>
 </body>
 </html>

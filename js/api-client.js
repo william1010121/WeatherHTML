@@ -2,8 +2,8 @@
  * @fileoverview Shared API client logic using Axios and localStorage for auth.
  */
 
-// Set global base URL for Axios
-axios.defaults.baseURL = 'https://meteo.local2.tempestdigi.com';
+// Set global base URL to the local CORS proxy
+axios.defaults.baseURL = 'http://localhost:8000';
 // Ensure cookies are sent with every request
 axios.defaults.withCredentials = true;
 

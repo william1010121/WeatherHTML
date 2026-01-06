@@ -1,0 +1,3132 @@
+{
+  "openapi": "3.0.4",
+  "info": {
+    "title": "Backend",
+    "version": "1.0"
+  },
+  "paths": {
+    "/api/Account/register": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Register",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegisterModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/login": {
+      "post": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Login",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginUserModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/info": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "GetIsLogin",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginUserModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/Account/logout": {
+      "get": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "Logout",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/block": {
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "BlockAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/BlockModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Account/unblock": {
+      "patch": {
+        "tags": [
+          "Account"
+        ],
+        "operationId": "UnblockAccount",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblockModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblockModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/UnblockModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/AirQuality/list": {
+      "post": {
+        "tags": [
+          "AirQuality"
+        ],
+        "summary": "拿取空品資料列表",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAirQualityListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAirQualityListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAirQualityListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AirQualityListModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/AirQuality": {
+      "post": {
+        "tags": [
+          "AirQuality"
+        ],
+        "summary": "新增單筆空品資料",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAirQualityModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAirQualityModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAirQualityModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "AirQuality"
+        ],
+        "summary": "修改單筆空品資料",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAirQualityModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAirQualityModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAirQualityModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "AirQuality"
+        ],
+        "summary": "刪除單筆空品資料",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/Log/list": {
+      "post": {
+        "tags": [
+          "Log"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLogListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLogListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLogListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Log"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/LoginHistory/list": {
+      "post": {
+        "tags": [
+          "LoginHistory"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLoginHistoryListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLoginHistoryListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetLoginHistoryListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "text/plain": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoginHistory"
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoginHistory"
+                  }
+                }
+              },
+              "text/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/LoginHistory"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User/{userId}": {
+      "get": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserModel"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "User"
+        ],
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/User/list": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetUserListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UserListModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/User": {
+      "post": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddUserModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "User"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditUserModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/weather/auto/list": {
+      "post": {
+        "tags": [
+          "Weather_Auto"
+        ],
+        "summary": "拿取天氣資料列表",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAutoObsListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAutoObsListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetAutoObsListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AutoObsListModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weather/auto": {
+      "post": {
+        "tags": [
+          "Weather_Auto"
+        ],
+        "summary": "新增單筆天氣資料",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAutoObsModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAutoObsModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddAutoObsModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Weather_Auto"
+        ],
+        "summary": "修改單筆天氣資料",
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAutoObsModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAutoObsModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditAutoObsModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Weather_Auto"
+        ],
+        "summary": "刪除單筆天氣資料",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "description": "",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/weather/cwa/CODiSApiTest": {
+      "get": {
+        "tags": [
+          "Weather_CWA"
+        ],
+        "summary": "簡單、快速拉取 CWA CODiS 網頁 API",
+        "parameters": [
+          {
+            "name": "start",
+            "in": "query",
+            "description": "ex: 2025-10-10T00:00:00",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "end",
+            "in": "query",
+            "description": "ex: 2025-10-10T23:59:00",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CODiSReportDateModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weather/cwa/list": {
+      "post": {
+        "tags": [
+          "Weather_CWA"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCWAListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCWAListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetCWAListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CWAListModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weather/cwa": {
+      "post": {
+        "tags": [
+          "Weather_CWA"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCWAModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCWAModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddCWAModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Weather_CWA"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCWAModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCWAModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditCWAModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Weather_CWA"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/weather/manual/list": {
+      "post": {
+        "tags": [
+          "Weather_Manual"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetManualObsListModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetManualObsListModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetManualObsListModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManualObsListModel"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/weather/manual": {
+      "post": {
+        "tags": [
+          "Weather_Manual"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddManualObsModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddManualObsModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/AddManualObsModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Weather_Manual"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditManualObsModel"
+              }
+            },
+            "text/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditManualObsModel"
+              }
+            },
+            "application/*+json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditManualObsModel"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "Weather_Manual"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "AddAirQualityModel": {
+        "required": [
+          "detectedAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "detectedAtUtc": {
+            "type": "string",
+            "description": "觀測時間",
+            "format": "date-time"
+          },
+          "pm_25": {
+            "type": "number",
+            "description": "細懸浮微粒 (PM2.5) (μg/m^3)：空氣動力學直徑小於等於 2.5 微米的懸浮微粒質量。",
+            "format": "double",
+            "nullable": true
+          },
+          "nmhc": {
+            "type": "number",
+            "description": "非甲烷總烴 (NMHC) (ppm)：指從總烴（所有可揮發的碳氫化合物）中扣除甲烷 (CH4) 後剩餘的碳氫化合物總量。",
+            "format": "double",
+            "nullable": true
+          },
+          "thc": {
+            "type": "number",
+            "description": "總碳氫化合物 (THC) (ppm)：碳氫化合物的總和量。",
+            "format": "double",
+            "nullable": true
+          },
+          "ch4": {
+            "type": "number",
+            "description": "甲烷 (CH4) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "so2": {
+            "type": "number",
+            "description": "二氧化硫 (SO2) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "o3": {
+            "type": "number",
+            "description": "臭氧 (O3) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "nox": {
+            "type": "number",
+            "description": "一氧化氮 (NO) 和二氧化氮 (NO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "no": {
+            "type": "number",
+            "description": "一氧化氮 (NO) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "co": {
+            "type": "number",
+            "description": "一氧化碳 (CO) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "co2": {
+            "type": "number",
+            "description": "二氧化碳 (CO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddAutoObsModel": {
+        "required": [
+          "detectedAtUtc"
+        ],
+        "type": "object",
+        "properties": {
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperature_HMP155_H3210017": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "relativeHumidity_HMP155_H3210017": {
+            "type": "number",
+            "description": "相對溼度 (%)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29471": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29472": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自另一個PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_01": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.1mm。",
+            "format": "double",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveDown": {
+            "type": "number",
+            "description": "向下短波輻射 (W/m^2)：從太陽和天空直接照射到地表的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveUp": {
+            "type": "number",
+            "description": "向上短波輻射 (W/m^2)：被地表反射回天空的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveDown": {
+            "type": "number",
+            "description": "向下長波輻射 (W/m^2)：由大氣（雲、水氣、溫室氣體）向地表放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveUp": {
+            "type": "number",
+            "description": "向上長波輻射 (W/m^2)：由地表本身溫度向天空放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_05": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.5mm。",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddCWAModel": {
+        "required": [
+          "dataTime"
+        ],
+        "type": "object",
+        "properties": {
+          "dataTime": {
+            "type": "string",
+            "description": "觀測時間",
+            "format": "date-time"
+          },
+          "stationPressure": {
+            "type": "number",
+            "description": "測站氣壓 (hPa)",
+            "format": "float",
+            "nullable": true
+          },
+          "airTemperature": {
+            "type": "number",
+            "description": "氣溫 (℃)",
+            "format": "float",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對溼度 (%)",
+            "format": "float",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "float",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "float",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "globalSolarRadiation": {
+            "type": "number",
+            "description": "全天空日射量 (MJ/㎡)",
+            "format": "float",
+            "nullable": true
+          },
+          "soilTemperatureAt10cm": {
+            "type": "number",
+            "description": "地溫10cm",
+            "format": "float",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddManualObsModel": {
+        "required": [
+          "detectedAtUtc",
+          "observerId"
+        ],
+        "type": "object",
+        "properties": {
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observerId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "氣溫 (乾球溫度) (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_Wet": {
+            "type": "number",
+            "description": "濕球溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_Dew": {
+            "type": "number",
+            "description": "露點溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "maxTemperature": {
+            "type": "number",
+            "description": "最高氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "maxTemperatureTime": {
+            "type": "string",
+            "description": "最高氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "minTemperature": {
+            "type": "number",
+            "description": "最低氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "minTemperatureTime": {
+            "type": "string",
+            "description": "最低氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對濕度 (%)",
+            "format": "float",
+            "nullable": true
+          },
+          "pressure": {
+            "type": "number",
+            "description": "氣壓 (mbar，同於hPa)",
+            "format": "float",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "float",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "float",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "evapTemperature": {
+            "type": "number",
+            "description": "蒸發皿水溫",
+            "format": "float",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "weatherCode": {
+            "type": "integer",
+            "description": "天氣現象代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "visibilityCode": {
+            "type": "integer",
+            "description": "能見度代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_Total": {
+            "type": "integer",
+            "description": "總雲量：天空被雲遮蔽的總比例，通常以 0 到 8 的八分量天法 (Oktas) 記錄。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_Ceiling": {
+            "type": "integer",
+            "description": "雲冪高 (Ceiling)：最低的雲層底部距離地面的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Code": {
+            "type": "integer",
+            "description": "高雲狀代碼 (High Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Number": {
+            "type": "integer",
+            "description": "高雲量：天空被高雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Hight": {
+            "type": "integer",
+            "description": "高雲高：高雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Code": {
+            "type": "integer",
+            "description": "中雲狀代碼 (Middle Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Number": {
+            "type": "integer",
+            "description": "中雲量：天空被中雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Hight": {
+            "type": "integer",
+            "description": "中雲高：中雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Code": {
+            "type": "integer",
+            "description": "低雲狀代碼 (Low Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Number": {
+            "type": "integer",
+            "description": "低雲量：天空被低雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Hight": {
+            "type": "integer",
+            "description": "低雲高：低雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "備註",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "AddUserModel": {
+        "required": [
+          "account",
+          "nickname",
+          "password",
+          "role"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "account": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nickname": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AirQuality": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "pm_25": {
+            "type": "number",
+            "description": "細懸浮微粒 (PM2.5) (μg/m^3)：空氣動力學直徑小於等於 2.5 微米的懸浮微粒質量。",
+            "format": "double",
+            "nullable": true
+          },
+          "nmhc": {
+            "type": "number",
+            "description": "非甲烷總烴 (NMHC) (ppm)：指從總烴（所有可揮發的碳氫化合物）中扣除甲烷 (CH4) 後剩餘的碳氫化合物總量。",
+            "format": "double",
+            "nullable": true
+          },
+          "thc": {
+            "type": "number",
+            "description": "總碳氫化合物 (THC) (ppm)：碳氫化合物的總和量。",
+            "format": "double",
+            "nullable": true
+          },
+          "ch4": {
+            "type": "number",
+            "description": "甲烷 (CH4) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "so2": {
+            "type": "number",
+            "description": "二氧化硫 (SO2) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "o3": {
+            "type": "number",
+            "description": "臭氧 (O3) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "nox": {
+            "type": "number",
+            "description": "一氧化氮 (NO) 和二氧化氮 (NO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "no": {
+            "type": "number",
+            "description": "一氧化氮 (NO) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "co": {
+            "type": "number",
+            "description": "一氧化碳 (CO) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "co2": {
+            "type": "number",
+            "description": "二氧化碳 (CO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "NAQO的自動觀測空品資料"
+      },
+      "AirQualityListModel": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AirQuality"
+            },
+            "nullable": true
+          },
+          "totalRowCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AirTemperature": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          },
+          "maximum": {
+            "type": "number",
+            "format": "double"
+          },
+          "minimum": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "AutoObsListModel": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Weather_Auto"
+            },
+            "nullable": true
+          },
+          "totalRowCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "BlockModel": {
+        "required": [
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CODiSMetadata": {
+        "type": "object",
+        "properties": {
+          "count": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CODiSReportDateByStationData": {
+        "type": "object",
+        "properties": {
+          "stationID": {
+            "type": "string",
+            "nullable": true
+          },
+          "dts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CODiSReportDateDatum"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "CODiSReportDateDatum": {
+        "type": "object",
+        "properties": {
+          "dataTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "stationPressure": {
+            "$ref": "#/components/schemas/StationPressure"
+          },
+          "seaLevelPressure": {
+            "$ref": "#/components/schemas/SeaLevelPressure"
+          },
+          "airTemperature": {
+            "$ref": "#/components/schemas/AirTemperature"
+          },
+          "dewPointTemperature": {
+            "$ref": "#/components/schemas/DewPointTemperature"
+          },
+          "relativeHumidity": {
+            "$ref": "#/components/schemas/RelativeHumidity"
+          },
+          "windSpeed": {
+            "$ref": "#/components/schemas/WindSpeed"
+          },
+          "windDirection": {
+            "$ref": "#/components/schemas/WindDirection"
+          },
+          "peakGust": {
+            "$ref": "#/components/schemas/PeakGust"
+          },
+          "precipitation": {
+            "$ref": "#/components/schemas/Precipitation"
+          },
+          "precipitationDuration": {
+            "$ref": "#/components/schemas/PrecipitationDuration"
+          },
+          "sunshineDuration": {
+            "$ref": "#/components/schemas/SunshineDuration"
+          },
+          "globalSolarRadiation": {
+            "$ref": "#/components/schemas/GlobalSolarRadiation"
+          },
+          "visibility": {
+            "$ref": "#/components/schemas/Visibility"
+          },
+          "uvIndex": {
+            "$ref": "#/components/schemas/UVIndex"
+          },
+          "totalCloudAmount": {
+            "$ref": "#/components/schemas/TotalCloudAmount"
+          },
+          "soilTemperatureAt0cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt0cm"
+          },
+          "soilTemperatureAt5cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt5cm"
+          },
+          "soilTemperatureAt10cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt10cm"
+          },
+          "soilTemperatureAt20cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt20cm"
+          },
+          "soilTemperatureAt30cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt30cm"
+          },
+          "soilTemperatureAt50cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt50cm"
+          },
+          "soilTemperatureAt100cm": {
+            "$ref": "#/components/schemas/SoilTemperatureAt100cm"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CODiSReportDateModel": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/CODiSReportDateByStationData"
+            },
+            "nullable": true
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/CODiSMetadata"
+          }
+        },
+        "additionalProperties": false
+      },
+      "CWAListModel": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Weather_CWA"
+            },
+            "nullable": true
+          },
+          "totalRowCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "DewPointTemperature": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditAirQualityModel": {
+        "required": [
+          "detectedAtUtc",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "description": "觀測時間",
+            "format": "date-time"
+          },
+          "pm_25": {
+            "type": "number",
+            "description": "細懸浮微粒 (PM2.5) (μg/m^3)：空氣動力學直徑小於等於 2.5 微米的懸浮微粒質量。",
+            "format": "double",
+            "nullable": true
+          },
+          "nmhc": {
+            "type": "number",
+            "description": "非甲烷總烴 (NMHC) (ppm)：指從總烴（所有可揮發的碳氫化合物）中扣除甲烷 (CH4) 後剩餘的碳氫化合物總量。",
+            "format": "double",
+            "nullable": true
+          },
+          "thc": {
+            "type": "number",
+            "description": "總碳氫化合物 (THC) (ppm)：碳氫化合物的總和量。",
+            "format": "double",
+            "nullable": true
+          },
+          "ch4": {
+            "type": "number",
+            "description": "甲烷 (CH4) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "so2": {
+            "type": "number",
+            "description": "二氧化硫 (SO2) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "o3": {
+            "type": "number",
+            "description": "臭氧 (O3) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "nox": {
+            "type": "number",
+            "description": "一氧化氮 (NO) 和二氧化氮 (NO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "no": {
+            "type": "number",
+            "description": "一氧化氮 (NO) (ppb)",
+            "format": "double",
+            "nullable": true
+          },
+          "co": {
+            "type": "number",
+            "description": "一氧化碳 (CO) (ppm)",
+            "format": "double",
+            "nullable": true
+          },
+          "co2": {
+            "type": "number",
+            "description": "二氧化碳 (CO2) (ppm)",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditAutoObsModel": {
+        "required": [
+          "detectedAtUtc",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperature_HMP155_H3210017": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "relativeHumidity_HMP155_H3210017": {
+            "type": "number",
+            "description": "相對溼度 (%)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29471": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29472": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自另一個PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_01": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.1mm。",
+            "format": "double",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveDown": {
+            "type": "number",
+            "description": "向下短波輻射 (W/m^2)：從太陽和天空直接照射到地表的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveUp": {
+            "type": "number",
+            "description": "向上短波輻射 (W/m^2)：被地表反射回天空的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveDown": {
+            "type": "number",
+            "description": "向下長波輻射 (W/m^2)：由大氣（雲、水氣、溫室氣體）向地表放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveUp": {
+            "type": "number",
+            "description": "向上長波輻射 (W/m^2)：由地表本身溫度向天空放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_05": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.5mm。",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditCWAModel": {
+        "required": [
+          "dataTime",
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "dataTime": {
+            "type": "string",
+            "description": "觀測時間",
+            "format": "date-time"
+          },
+          "stationPressure": {
+            "type": "number",
+            "description": "測站氣壓 (hPa)",
+            "format": "float",
+            "nullable": true
+          },
+          "airTemperature": {
+            "type": "number",
+            "description": "氣溫 (℃)",
+            "format": "float",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對溼度 (%)",
+            "format": "float",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "float",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "float",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "globalSolarRadiation": {
+            "type": "number",
+            "description": "全天空日射量 (MJ/㎡)",
+            "format": "float",
+            "nullable": true
+          },
+          "soilTemperatureAt10cm": {
+            "type": "number",
+            "description": "地溫10cm",
+            "format": "float",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditManualObsModel": {
+        "required": [
+          "detectedAtUtc",
+          "id",
+          "observerId"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observerId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "temperature": {
+            "type": "number",
+            "description": "氣溫 (乾球溫度) (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_Wet": {
+            "type": "number",
+            "description": "濕球溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_Dew": {
+            "type": "number",
+            "description": "露點溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "maxTemperature": {
+            "type": "number",
+            "description": "最高氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "maxTemperatureTime": {
+            "type": "string",
+            "description": "最高氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "minTemperature": {
+            "type": "number",
+            "description": "最低氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "minTemperatureTime": {
+            "type": "string",
+            "description": "最低氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對濕度 (%)",
+            "format": "float",
+            "nullable": true
+          },
+          "pressure": {
+            "type": "number",
+            "description": "氣壓 (mbar，同於hPa)",
+            "format": "float",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "float",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "float",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "evapTemperature": {
+            "type": "number",
+            "description": "蒸發皿水溫",
+            "format": "float",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "weatherCode": {
+            "type": "integer",
+            "description": "天氣現象代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "visibilityCode": {
+            "type": "integer",
+            "description": "能見度代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_Total": {
+            "type": "integer",
+            "description": "總雲量：天空被雲遮蔽的總比例，通常以 0 到 8 的八分量天法 (Oktas) 記錄。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_Ceiling": {
+            "type": "integer",
+            "description": "雲冪高 (Ceiling)：最低的雲層底部距離地面的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Code": {
+            "type": "integer",
+            "description": "高雲狀代碼 (High Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Number": {
+            "type": "integer",
+            "description": "高雲量：天空被高雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "highCloud_Hight": {
+            "type": "integer",
+            "description": "高雲高：高雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Code": {
+            "type": "integer",
+            "description": "中雲狀代碼 (Middle Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Number": {
+            "type": "integer",
+            "description": "中雲量：天空被中雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "middleCloud_Hight": {
+            "type": "integer",
+            "description": "中雲高：中雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Code": {
+            "type": "integer",
+            "description": "低雲狀代碼 (Low Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Number": {
+            "type": "integer",
+            "description": "低雲量：天空被低雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "lowCloud_Hight": {
+            "type": "integer",
+            "description": "低雲高：低雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "備註",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "EditUserModel": {
+        "required": [
+          "nickname",
+          "role",
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "nickname": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterItem": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true
+          },
+          "operator": {
+            "type": "string",
+            "nullable": true
+          },
+          "value": {
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "FilterModel": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/FilterItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAirQualityListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetAutoObsListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetCWAListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLogListModel": {
+        "type": "object",
+        "properties": {
+          "skip": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "limit": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetLoginHistoryListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetManualObsListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetUserListModel": {
+        "required": [
+          "page",
+          "pageSize"
+        ],
+        "type": "object",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32",
+            "example": 15
+          },
+          "sortModel": {
+            "$ref": "#/components/schemas/SortModel"
+          },
+          "filterModel": {
+            "$ref": "#/components/schemas/FilterModel"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GlobalSolarRadiation": {
+        "type": "object",
+        "properties": {
+          "accumulation": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Log": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "level": {
+            "type": "string",
+            "nullable": true
+          },
+          "message": {
+            "type": "string",
+            "nullable": true
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": { },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginHistory": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "userRole": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "userAccount": {
+            "type": "string",
+            "nullable": true
+          },
+          "userNickname": {
+            "type": "string",
+            "nullable": true
+          },
+          "remoteIpAddress": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginModel": {
+        "required": [
+          "account",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "account": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "LoginUserModel": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "account": {
+            "type": "string",
+            "nullable": true
+          },
+          "nickname": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ManualObsListModel": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Weather_Manual"
+            },
+            "nullable": true
+          },
+          "totalRowCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PeakGust": {
+        "type": "object",
+        "properties": {
+          "direction": {
+            "type": "number",
+            "format": "double"
+          },
+          "maximum": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "Precipitation": {
+        "type": "object",
+        "properties": {
+          "accumulation": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "PrecipitationDuration": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RegisterModel": {
+        "required": [
+          "account",
+          "password"
+        ],
+        "type": "object",
+        "properties": {
+          "account": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "password": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "RelativeHumidity": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SeaLevelPressure": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt0cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt100cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt10cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt20cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt30cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt50cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SoilTemperatureAt5cm": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SortItem": {
+        "type": "object",
+        "properties": {
+          "field": {
+            "type": "string",
+            "nullable": true,
+            "example": "DetectedAtUtc"
+          },
+          "sort": {
+            "type": "string",
+            "nullable": true,
+            "example": "desc"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SortModel": {
+        "type": "object",
+        "properties": {
+          "items": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SortItem"
+            },
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "StationPressure": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SunshineDuration": {
+        "type": "object",
+        "properties": {
+          "total": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "TotalCloudAmount": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UVIndex": {
+        "type": "object",
+        "properties": {
+          "accumulation": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UnblockModel": {
+        "required": [
+          "userId"
+        ],
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserListModel": {
+        "type": "object",
+        "properties": {
+          "rows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/UserModel"
+            },
+            "nullable": true
+          },
+          "totalRowCount": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserModel": {
+        "type": "object",
+        "properties": {
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "role": {
+            "$ref": "#/components/schemas/UserRole"
+          },
+          "account": {
+            "type": "string",
+            "nullable": true
+          },
+          "nickname": {
+            "type": "string",
+            "nullable": true
+          },
+          "isBlocked": {
+            "type": "boolean",
+            "description": "是否被封鎖"
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "additionalProperties": false
+      },
+      "UserRole": {
+        "enum": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "type": "integer",
+        "format": "int32"
+      },
+      "Visibility": {
+        "type": "object",
+        "properties": {
+          "instantaneous": {
+            "type": "number",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "Weather_Auto": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "temperature_HMP155_H3210017": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "relativeHumidity_HMP155_H3210017": {
+            "type": "number",
+            "description": "相對溼度 (%)，來自HMP155感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29471": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "temperature_PRT_29472": {
+            "type": "number",
+            "description": "氣溫 (℃)，來自另一個PRT感測器",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_01": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.1mm。",
+            "format": "double",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveDown": {
+            "type": "number",
+            "description": "向下短波輻射 (W/m^2)：從太陽和天空直接照射到地表的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "shortWaveUp": {
+            "type": "number",
+            "description": "向上短波輻射 (W/m^2)：被地表反射回天空的太陽光能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveDown": {
+            "type": "number",
+            "description": "向下長波輻射 (W/m^2)：由大氣（雲、水氣、溫室氣體）向地表放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "longWaveUp": {
+            "type": "number",
+            "description": "向上長波輻射 (W/m^2)：由地表本身溫度向天空放射的熱輻射能量。",
+            "format": "double",
+            "nullable": true
+          },
+          "rain_05": {
+            "type": "number",
+            "description": "雨量計觀測值 (mm)，精密度(precision)為0.5mm。",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "NAHO的自動觀測氣象資料"
+      },
+      "Weather_CWA": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "dataTime": {
+            "type": "string",
+            "description": "觀測時間",
+            "format": "date-time"
+          },
+          "stationPressure": {
+            "type": "number",
+            "description": "測站氣壓 (hPa)",
+            "format": "double",
+            "nullable": true
+          },
+          "airTemperature": {
+            "type": "number",
+            "description": "氣溫 (℃)",
+            "format": "double",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對溼度 (%)",
+            "format": "double",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "double",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "double",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "double",
+            "nullable": true
+          },
+          "globalSolarRadiation": {
+            "type": "number",
+            "description": "全天空日射量 (MJ/㎡)",
+            "format": "double",
+            "nullable": true
+          },
+          "soilTemperatureAt10cm": {
+            "type": "number",
+            "description": "地溫10cm",
+            "format": "double",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "中央大學的氣象測站資料(測站編號：C2C410)"
+      },
+      "Weather_Manual": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "nullable": true
+          },
+          "addedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "detectedAtUtc": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "observerId": {
+            "type": "string",
+            "nullable": true
+          },
+          "temperature": {
+            "type": "number",
+            "description": "氣溫 (乾球溫度) (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_wet": {
+            "type": "number",
+            "description": "濕球溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_dew": {
+            "type": "number",
+            "description": "露點溫度 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_max": {
+            "type": "number",
+            "description": "最高氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_max_time": {
+            "type": "string",
+            "description": "最高氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "temperature_min": {
+            "type": "number",
+            "description": "最低氣溫 (°C)",
+            "format": "float",
+            "nullable": true
+          },
+          "temperature_min_time": {
+            "type": "string",
+            "description": "最低氣溫出現時間",
+            "format": "date-time",
+            "nullable": true
+          },
+          "relativeHumidity": {
+            "type": "number",
+            "description": "相對濕度 (%)",
+            "format": "float",
+            "nullable": true
+          },
+          "pressure": {
+            "type": "number",
+            "description": "氣壓 (mbar，同於hPa)",
+            "format": "float",
+            "nullable": true
+          },
+          "windSpeed": {
+            "type": "number",
+            "description": "風速 (m/s)",
+            "format": "float",
+            "nullable": true
+          },
+          "windDirection": {
+            "type": "number",
+            "description": "風向 (360degree)",
+            "format": "float",
+            "nullable": true
+          },
+          "precipitation": {
+            "type": "number",
+            "description": "降水量 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "evapTemperature": {
+            "type": "number",
+            "description": "蒸發皿水溫",
+            "format": "float",
+            "nullable": true
+          },
+          "evapLevel": {
+            "type": "number",
+            "description": "蒸發皿水位高 (mm)",
+            "format": "float",
+            "nullable": true
+          },
+          "weather_code": {
+            "type": "integer",
+            "description": "天氣現象代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "visibility_code": {
+            "type": "integer",
+            "description": "能見度代碼",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_total": {
+            "type": "integer",
+            "description": "總雲量：天空被雲遮蔽的總比例，通常以 0 到 8 的八分量天法 (Oktas) 記錄。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloud_ceiling": {
+            "type": "integer",
+            "description": "雲冪高 (Ceiling)：最低的雲層底部距離地面的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudh_code": {
+            "type": "integer",
+            "description": "高雲狀代碼 (High Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudh_number": {
+            "type": "integer",
+            "description": "高雲量：天空被高雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudh_hight": {
+            "type": "integer",
+            "description": "高雲高：高雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudm_code": {
+            "type": "integer",
+            "description": "中雲狀代碼 (Middle Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudm_number": {
+            "type": "integer",
+            "description": "中雲量：天空被中雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudm_hight": {
+            "type": "integer",
+            "description": "中雲高：中雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudl_code": {
+            "type": "integer",
+            "description": "低雲狀代碼 (Low Cloud)",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudl_number": {
+            "type": "integer",
+            "description": "低雲量：天空被低雲遮蔽的比例 (Oktas)。",
+            "format": "int32",
+            "nullable": true
+          },
+          "cloudl_hight": {
+            "type": "integer",
+            "description": "低雲高：低雲雲底的高度。",
+            "format": "int32",
+            "nullable": true
+          },
+          "comment": {
+            "type": "string",
+            "description": "備註",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "NAHO的人工觀測氣象資料"
+      },
+      "WindDirection": {
+        "type": "object",
+        "properties": {
+          "tenMinutelyMaximum": {
+            "type": "number",
+            "format": "double"
+          },
+          "mean": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      },
+      "WindSpeed": {
+        "type": "object",
+        "properties": {
+          "tenMinutelyMaximum": {
+            "type": "number",
+            "format": "double"
+          },
+          "mean": {
+            "type": "number",
+            "format": "double"
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  }
+}

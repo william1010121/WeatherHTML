@@ -1,0 +1,26 @@
+實作一個具備二階連動導覽的 HTML 頁面，點選頂部導覽列後切換側邊欄清單，並依據兩者 ID 組合自動生成路徑並以 iframe 載入對應的 ./[navbar]-[sidebar].html。
+
+# 第一個 navbar : BackEnd , Ref: ./swagger.json
+
+我想要對裡面每一個分類的 restful (get, delete, update, query)都做成一個[sidebar]
+然後讓我可以透過api 來看到/修改他們
+
+然後每一個[navbar]-[sidebar].html 都應該在top有account 跟 passsword 讓我可以先使用 api 來進行login, 並且接下來使用那一個帳號來進行接下來的操作
+
+
+然後顯示的部分就是可以顯示出每一個的資料（如果有Get的話）然後如果需要帶什麼參數的話就一樣是在top那邊
+
+
+所以要先做的可能是
+1. 先找出 ./swagger.json  裡面所有的物間操作都有一個 BackEnd-[Operation, ex:log].html 然後對於每一個頁面都先列出他有什麼
+2. 請開一個.md檔案，然後把所有的操作都放在裡面
+3. 然後一個一個完成
+
+
+# 第二個navbar : DataJson , Ref: ./DataJson
+只有一個[sidebar]
+1. 一開始有一個input可以填入[年份][月份]
+2. 然後 https://tortoise-fluent-rationally.ngrok-free.app/api/60min/json/[year][month] 拿至一個的資料
+3. 用list顯是，然後每一個item 都是collaps的，只顯示日期，點開來之後才會有顯示裡面的資料
+
+然後有一個按鈕可以讓我下載json

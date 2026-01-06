@@ -1,0 +1,8 @@
+{
+  "track_id": "auth_fixes_20260107",
+  "type": "bug",
+  "status": "new",
+  "created_at": "2026-01-07T00:00:00Z",
+  "updated_at": "2026-01-07T00:00:00Z",
+  "description": "Fix authentication errors, update API domain to meteo.local2.tempestdigi.com, enhance error reporting, and add a retry button."
+}

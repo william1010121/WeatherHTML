@@ -9,12 +9,16 @@ PORT = 8000
 TARGET_URL = "https://meteo.local2.tempestdigi.com"
 
 class ProxyHandler(http.server.BaseHTTPRequestHandler):
-    def do_OPTIONS(self):
-        self.send_response(200)
+    def _send_cors_headers(self):
+        """Helper to send CORS headers for every response."""
         self.send_header('Access-Control-Allow-Origin', self.headers.get('Origin', '*'))
         self.send_header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS')
         self.send_header('Access-Control-Allow-Headers', 'Content-Type, X-Account, X-Password, ngrok-skip-browser-warning')
         self.send_header('Access-Control-Allow-Credentials', 'true')
+
+    def do_OPTIONS(self):
+        self.send_response(200)
+        self._send_cors_headers()
         self.end_headers()
 
     def handle_proxy(self):
@@ -26,7 +30,7 @@ class ProxyHandler(http.server.BaseHTTPRequestHandler):
 
         # Prepare headers to forward
         headers = {key: value for key, value in self.headers.items() 
-                   if key.lower() not in ('host', 'connection')}
+                   if key.lower() not in ('host', 'connection', 'origin', 'content-length')}
         
         # Log the request
         print(f"Proxying {self.command} {self.path} -> {url}")
@@ -38,26 +42,25 @@ class ProxyHandler(http.server.BaseHTTPRequestHandler):
                 self.send_response(response.status)
                 for key, value in response.getheaders():
                     # Strip headers that might interfere with the browser's handling
-                    if key.lower() not in ('transfer-encoding', 'content-encoding', 'content-length', 'access-control-allow-origin'):
+                    if key.lower() not in ('transfer-encoding', 'content-encoding', 'content-length', 'access-control-allow-origin', 'access-control-allow-credentials'):
                         self.send_header(key, value)
                 
                 # Add CORS headers for the local browser
-                self.send_header('Access-Control-Allow-Origin', self.headers.get('Origin', '*'))
-                self.send_header('Access-Control-Allow-Credentials', 'true')
+                self._send_cors_headers()
                 self.end_headers()
                 self.wfile.write(response.read())
         except urllib.error.HTTPError as e:
             self.send_response(e.code)
             for key, value in e.headers.items():
-                if key.lower() not in ('transfer-encoding', 'content-encoding', 'content-length', 'access-control-allow-origin'):
+                if key.lower() not in ('transfer-encoding', 'content-encoding', 'content-length', 'access-control-allow-origin', 'access-control-allow-credentials'):
                     self.send_header(key, value)
-            self.send_header('Access-Control-Allow-Origin', self.headers.get('Origin', '*'))
-            self.send_header('Access-Control-Allow-Credentials', 'true')
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(e.read())
         except Exception as e:
             print(f"Proxy Error: {e}")
             self.send_response(500)
+            self._send_cors_headers()
             self.end_headers()
             self.wfile.write(str(e).encode())
 

@@ -9,6 +9,7 @@
 - **HTTP Client:** **Axios** for handling all RESTful operations (GET, POST, PUT, DELETE) and authentication requests.
 - **Swagger Integration:** Parsing of `swagger.json` to extract paths, methods, and parameters.
 - **Data Source (DataJson):** Fetching monthly weather data from an external ngrok-hosted API.
+  - *Note: Requires the 'ngrok-skip-browser-warning' header for programmatic access.*
 
 ## State & Storage
 - **Authentication:** **LocalStorage** for persisting the "Account" and "Password" credentials, making them accessible across all iframe-loaded pages on the same domain.
