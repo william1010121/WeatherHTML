@@ -3,7 +3,7 @@
 ## Phase 1: Foundation & Navigation Shell
 - [x] Task: Initialize project structure (CSS/JS folders) and install dependencies (Axios) (0e63c2c)
 - [x] Task: Create `index.html` with Tailwind layout (Navbar + Sidebar + Iframe) (e7073a0)
-- [ ] Task: Implement basic navigation logic in `main.js` to switch sidebars
+- [x] Task: Implement basic navigation logic in `main.js` to switch sidebars (7654d81)
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation' (Protocol in workflow.md)
 
 ## Phase 2: BackEnd Module & Swagger Parsing
