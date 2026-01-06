@@ -19,7 +19,7 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 3: DataJson Module' (023f625)
 
 ## Phase 4: Shared Auth & Integration
-- [ ] Task: Implement `api-client.js` for shared Axios logic and `localStorage` auth
+- [x] Task: Implement `api-client.js` for shared Axios logic and `localStorage` auth (ecb1f7b)
 - [ ] Task: Integrate auth headers into the BackEnd operation pages
 - [ ] Task: Final polish of navigation and layout
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Shared Auth' (Protocol in workflow.md)
