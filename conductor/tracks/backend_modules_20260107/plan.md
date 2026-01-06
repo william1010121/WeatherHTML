@@ -6,11 +6,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 1: Sidebar' (Protocol in workflow.md) (5c3a8d7)
 
 ## Phase 2: Unified Resource Component (User)
-- [~] Task: Create `BackEnd-User.html` using the template as a base.
-- [ ] Task: Implement "List" logic with an interactive Tailwind data table.
-- [ ] Task: Implement "Add/Edit" modal/form with validation.
-- [ ] Task: Implement "Delete" confirmation and execution.
-- [ ] Task: Conductor - User Manual Verification 'Phase 2: User Resource' (Protocol in workflow.md)
+- [x] Task: Create `BackEnd-User.html` using the template as a base. (0cc3271)
+- [x] Task: Implement "List" logic with an interactive Tailwind data table. (0cc3271)
+- [x] Task: Implement "Add/Edit" modal/form with validation. (0cc3271)
+- [x] Task: Implement "Delete" confirmation and execution. (0cc3271)
+- [~] Task: Conductor - User Manual Verification 'Phase 2: User Resource' (Protocol in workflow.md)
 
 ## Phase 3: Weather & AirQuality Resources
 - [ ] Task: Create `BackEnd-Weather_Auto.html` (Unified CRUD).
