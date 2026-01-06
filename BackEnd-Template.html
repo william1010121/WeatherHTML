@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>BackEnd Operation Template</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-white p-6">
+
+  <!-- Shared Auth Header -->
+  <div class="bg-gray-50 border rounded-lg p-4 mb-6 shadow-sm">
+    <h2 class="text-sm font-bold text-gray-700 uppercase tracking-wider mb-3">Authentication Settings</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div>
+        <label for="auth-account" class="block text-xs font-medium text-gray-500 mb-1">Account</label>
+        <input type="text" id="auth-account" class="w-full border rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter account">
+      </div>
+      <div>
+        <label for="auth-password" class="block text-xs font-medium text-gray-500 mb-1">Password</label>
+        <input type="password" id="auth-password" class="w-full border rounded px-3 py-2 text-sm focus:ring-2 focus:ring-blue-500 outline-none" placeholder="Enter password">
+      </div>
+    </div>
+  </div>
+
+  <!-- Operation Header -->
+  <div class="mb-6">
+    <div class="flex items-center space-x-2 mb-2">
+      <span id="op-method" class="px-2 py-1 rounded text-xs font-bold bg-blue-600 text-white uppercase">METHOD</span>
+      <h1 id="op-title" class="text-2xl font-bold text-gray-800">Operation Name</h1>
+    </div>
+    <p id="op-path" class="text-sm font-mono text-gray-500">/api/path/here</p>
+    <p id="op-summary" class="mt-2 text-gray-600 italic">Brief description of what this operation does.</p>
+  </div>
+
+  <!-- Parameters Form -->
+  <form id="op-form" class="space-y-6">
+    <div id="parameters-container" class="space-y-4">
+      <h2 class="text-lg font-semibold border-b pb-2">Parameters</h2>
+      <!-- Dynamic parameters will be injected here or hardcoded in specific pages -->
+      <p class="text-sm text-gray-500 italic">No parameters required for this operation.</p>
+    </div>
+
+    <div class="pt-4">
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded font-bold hover:bg-blue-700 transition shadow-md">
+        Execute Operation
+      </button>
+    </div>
+  </form>
+
+  <!-- Response Section -->
+  <div class="mt-10">
+    <h2 class="text-lg font-semibold border-b pb-2 mb-4">Response</h2>
+    <div id="response-status" class="hidden mb-2 p-2 rounded text-sm font-bold"></div>
+    <pre id="response-body" class="bg-gray-900 text-green-400 p-4 rounded-lg overflow-x-auto text-sm font-mono min-h-[100px]">Waiting for execution...</pre>
+  </div>
+
+  <script src="js/api-client.js" type="module"></script>
+  <script type="module">
+    // Template placeholder logic (will be specific per operation page)
+    document.getElementById('op-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      document.getElementById('response-body').textContent = 'Executing... (Integration pending in Phase 4)';
+    });
+  </script>
+</body>
+</html>
