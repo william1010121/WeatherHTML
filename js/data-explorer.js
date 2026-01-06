@@ -10,6 +10,37 @@ function initExplorer() {
   if (form) {
     form.addEventListener('submit', handleFetch);
   }
+  
+  const downloadBtn = document.getElementById('download-btn');
+  if (downloadBtn) {
+    downloadBtn.addEventListener('click', handleDownload);
+  }
+}
+
+/**
+ * Handles the download event.
+ */
+function handleDownload() {
+  const data = window._currentData;
+  if (!data) return;
+
+  const year = document.getElementById('year').value;
+  const month = document.getElementById('month').value;
+  const filename = `weather-data-${year}-${month}.json`;
+
+  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+  const url = URL.createObjectURL(blob);
+  
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  
+  setTimeout(() => {
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  }, 0);
 }
 
 /**
