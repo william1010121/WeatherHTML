@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DataJson Explorer</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-white p-6">
+
+  <!-- Header -->
+  <div class="mb-8">
+    <h1 class="text-2xl font-bold text-gray-800">Weather Data Explorer</h1>
+    <p class="text-gray-600">Access and visualize historical weather data in JSON format.</p>
+  </div>
+
+  <!-- Search Controls -->
+  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6 mb-8 shadow-sm">
+    <form id="explorer-form" class="flex flex-wrap items-end gap-4">
+      <div>
+        <label for="year" class="block text-sm font-semibold text-gray-700 mb-1">Year</label>
+        <input type="number" id="year" name="year" min="2000" max="2100" value="2025" 
+               class="w-32 border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+      </div>
+      <div>
+        <label for="month" class="block text-sm font-semibold text-gray-700 mb-1">Month</label>
+        <select id="month" name="month" 
+                class="w-32 border border-gray-300 rounded px-3 py-2 focus:ring-2 focus:ring-blue-500 outline-none">
+          <option value="01">January</option>
+          <option value="02">February</option>
+          <option value="03">March</option>
+          <option value="04">April</option>
+          <option value="05">May</option>
+          <option value="06">June</option>
+          <option value="07">July</option>
+          <option value="08">August</option>
+          <option value="09">September</option>
+          <option value="10">October</option>
+          <option value="11">November</option>
+          <option value="12" selected>December</option>
+        </select>
+      </div>
+      <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded font-bold hover:bg-blue-700 transition shadow-md">
+        Fetch Data
+      </button>
+      <button id="download-btn" type="button" disabled 
+              class="bg-green-600 text-white px-6 py-2 rounded font-bold hover:bg-green-700 transition shadow-md disabled:bg-gray-400 disabled:cursor-not-allowed">
+        Download JSON
+      </button>
+    </form>
+  </div>
+
+  <!-- Content Section -->
+  <div id="status-message" class="hidden mb-4 p-4 rounded text-sm"></div>
+  
+  <div id="data-container" class="space-y-2">
+    <!-- Collapsible data items will be injected here -->
+    <p class="text-gray-500 italic">Enter Year and Month to browse data points.</p>
+  </div>
+
+  <script src="js/api-client.js" type="module"></script>
+  <script type="module">
+    // Placeholder for implementation logic in next tasks
+    document.getElementById('explorer-form').addEventListener('submit', (e) => {
+      e.preventDefault();
+      alert('Fetching logic will be implemented in the next task.');
+    });
+  </script>
+</body>
+</html>
