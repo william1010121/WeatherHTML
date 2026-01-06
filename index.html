@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Weather Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col overflow-hidden">
+
+  <!-- Top Navbar -->
+  <header class="bg-blue-600 text-white shadow-md flex-none">
+    <div class="container mx-auto px-4 h-16 flex items-center justify-between">
+      <div class="text-xl font-bold">WeatherHTMl Dashboard</div>
+      <nav class="flex space-x-4">
+        <button id="nav-backend" class="px-3 py-2 rounded hover:bg-blue-700 transition font-medium">BackEnd</button>
+        <button id="nav-datajson" class="px-3 py-2 rounded hover:bg-blue-700 transition font-medium">DataJson</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <div class="flex flex-1 overflow-hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-white border-r overflow-y-auto flex-none">
+      <div id="sidebar-content" class="p-4">
+        <p class="text-gray-500 italic">Select a module from the top navbar.</p>
+      </div>
+    </aside>
+
+    <!-- Content Area -->
+    <main class="flex-1 overflow-hidden relative">
+      <iframe id="content-frame" name="content-frame" class="w-full h-full border-none" src="about:blank"></iframe>
+    </main>
+  </div>
+
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
