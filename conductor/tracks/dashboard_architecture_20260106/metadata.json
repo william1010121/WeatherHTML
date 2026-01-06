@@ -1,0 +1,8 @@
+{
+  "track_id": "dashboard_architecture_20260106",
+  "type": "feature",
+  "status": "new",
+  "created_at": "2026-01-06T12:00:00Z",
+  "updated_at": "2026-01-06T12:00:00Z",
+  "description": "Build the core dashboard architecture with two-level navigation, swagger.json parsing for the BackEnd sidebar, and the DataJson monthly data explorer."
+}
