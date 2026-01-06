@@ -1,8 +1,8 @@
 # Plan: Dashboard Architecture
 
 ## Phase 1: Foundation & Navigation Shell
-- [ ] Task: Initialize project structure (CSS/JS folders) and install dependencies (Axios)
-- [ ] Task: Create `index.html` with Tailwind layout (Navbar + Sidebar + Iframe)
+- [x] Task: Initialize project structure (CSS/JS folders) and install dependencies (Axios) (0e63c2c)
+- [x] Task: Create `index.html` with Tailwind layout (Navbar + Sidebar + Iframe) (e7073a0)
 - [ ] Task: Implement basic navigation logic in `main.js` to switch sidebars
 - [ ] Task: Conductor - User Manual Verification 'Phase 1: Foundation' (Protocol in workflow.md)
 
