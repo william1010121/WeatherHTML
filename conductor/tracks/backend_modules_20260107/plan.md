@@ -13,11 +13,11 @@
 - [x] Task: Conductor - User Manual Verification 'Phase 2: User Resource' (Protocol in workflow.md) (5570a87)
 
 ## Phase 3: Weather & AirQuality Resources
-- [~] Task: Create `BackEnd-Weather_Auto.html` (Unified CRUD).
-- [ ] Task: Create `BackEnd-Weather_Manual.html` (Unified CRUD).
-- [ ] Task: Create `BackEnd-Weather_CWA.html` (Unified CRUD).
-- [ ] Task: Create `BackEnd-AirQuality.html` (Unified CRUD).
-- [ ] Task: Conductor - User Manual Verification 'Phase 3: Environmental Resources' (Protocol in workflow.md)
+- [x] Task: Create `BackEnd-Weather_Auto.html` (Unified CRUD). (290fb67)
+- [x] Task: Create `BackEnd-Weather_Manual.html` (Unified CRUD). (290fb67)
+- [x] Task: Create `BackEnd-Weather_CWA.html` (Unified CRUD). (290fb67)
+- [x] Task: Create `BackEnd-AirQuality.html` (Unified CRUD). (290fb67)
+- [~] Task: Conductor - User Manual Verification 'Phase 3: Environmental Resources' (Protocol in workflow.md)
 
 ## Phase 4: Generic Handler & Final Polish
 - [ ] Task: Implement `BackEnd-Generic.html` for non-prioritized operations.
