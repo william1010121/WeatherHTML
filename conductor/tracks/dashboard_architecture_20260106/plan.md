@@ -21,5 +21,5 @@
 ## Phase 4: Shared Auth & Integration
 - [x] Task: Implement `api-client.js` for shared Axios logic and `localStorage` auth (ecb1f7b)
 - [x] Task: Integrate auth headers into the BackEnd operation pages (392d291)
-- [ ] Task: Final polish of navigation and layout
+- [x] Task: Final polish of navigation and layout (ad333c6)
 - [ ] Task: Conductor - User Manual Verification 'Phase 4: Shared Auth' (Protocol in workflow.md)
