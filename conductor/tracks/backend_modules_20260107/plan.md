@@ -3,10 +3,10 @@
 ## Phase 1: Sidebar Refactoring & Logic
 - [x] Task: Modify `js/swagger-parser.js` to support consolidated resource links. (fc03b1c)
 - [x] Task: Implement logic to distinguish between "Unified" resources and "Generic" operations. (fc03b1c)
-- [ ] Task: Conductor - User Manual Verification 'Phase 1: Sidebar' (Protocol in workflow.md)
+- [x] Task: Conductor - User Manual Verification 'Phase 1: Sidebar' (Protocol in workflow.md) (5c3a8d7)
 
 ## Phase 2: Unified Resource Component (User)
-- [ ] Task: Create `BackEnd-User.html` using the template as a base.
+- [~] Task: Create `BackEnd-User.html` using the template as a base.
 - [ ] Task: Implement "List" logic with an interactive Tailwind data table.
 - [ ] Task: Implement "Add/Edit" modal/form with validation.
 - [ ] Task: Implement "Delete" confirmation and execution.
