@@ -9,7 +9,7 @@
 ## Phase 2: BackEnd Module & Swagger Parsing
 - [x] Task: Create `BackEnd-Operations.md` by parsing `swagger.json` to list all operations (cee12a4)
 - [x] Task: Implement `swagger-parser.js` to dynamically build the BackEnd sidebar (ef2eb49)
-- [ ] Task: Create a template for `BackEnd-[Operation].html` with Auth headers and parameter inputs
+- [x] Task: Create a template for `BackEnd-[Operation].html` with Auth headers and parameter inputs (2876b4c)
 - [ ] Task: Conductor - User Manual Verification 'Phase 2: BackEnd Module' (Protocol in workflow.md)
 
 ## Phase 3: DataJson Module
