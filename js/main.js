@@ -1,4 +1,5 @@
 import { buildBackendSidebar } from './swagger-parser.js';
+import './api-client.js';
 
 /**
  * @fileoverview Main navigation logic for the Weather Dashboard shell.
