@@ -63,18 +63,38 @@ async function handleFetch(event) {
 
   try {
     const url = `https://tortoise-fluent-rationally.ngrok-free.app/api/60min/json/${year}${month}`;
-    const response = await axios.get(url);
-    const data = response.data;
+    const response = await axios.get(url, {
+      headers: {
+        'ngrok-skip-browser-warning': 'true'
+      }
+    });
+    let data = response.data;
+
+    // Handle string responses that might be JSON
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) {
+        console.error('Data is a string but not valid JSON:', data);
+        showError('Received non-JSON response from server. It might be an error page.');
+        return;
+      }
+    }
 
     if (!data || (Array.isArray(data) && data.length === 0)) {
       showError('No data found for the selected period.');
       return;
     }
 
+    if (!Array.isArray(data)) {
+      console.warn('Data is not an array, wrapping in array:', data);
+      data = [data];
+    }
+
     renderDataList(data);
     statusMsg.classList.replace('bg-blue-100', 'bg-green-100');
     statusMsg.classList.replace('text-blue-700', 'text-green-700');
-    statusMsg.textContent = `Successfully loaded ${data.length || 1} data points.`;
+    statusMsg.textContent = `Successfully loaded ${data.length} data points.`;
     
     // Store data globally for download
     window._currentData = data;
